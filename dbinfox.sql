@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `tbclientes` (
   `fonecli` varchar(50) NOT NULL,
   `emailcli` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idcli`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Extraindo dados da tabela `tbclientes`
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `tbos` (
   `idcli` int NOT NULL,
   PRIMARY KEY (`os`),
   KEY `idcli` (`idcli`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Extraindo dados da tabela `tbos`
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `tbusuarios` (
   `senha` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`iduser`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Extraindo dados da tabela `tbusuarios`
