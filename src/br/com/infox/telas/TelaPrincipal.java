@@ -186,7 +186,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(desktop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(947, 531));
+        setSize(new java.awt.Dimension(947, 519));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,7 +223,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menCadUsuActionPerformed
 
     private void menCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadCliActionPerformed
-        // As linhas abaixo chama a tela de cliente
         TelaCliente cliente = new TelaCliente();
         cliente.setVisible(true);
         desktop.add(cliente);

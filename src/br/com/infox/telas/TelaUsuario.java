@@ -181,6 +181,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         setForeground(java.awt.Color.black);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Usuários");
         setPreferredSize(new java.awt.Dimension(640, 480));
 

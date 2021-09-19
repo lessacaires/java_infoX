@@ -8,6 +8,8 @@ package br.com.infox.telas;
 import java.sql.*;
 import br.com.infox.dal.ModuloConexao;
 import javax.swing.JOptionPane;
+//a linha abixo importa recursos da biblioteca rs2xml.jar
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -52,6 +54,30 @@ ResultSet rs = null;
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    private void pesquisar_cliente(){
+        String sql = "SELECT * FROM tbclientes WHERE nomecli LIKE ?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            //passando o conteudo da caixa de pesquisa para o ?
+            //Atenção ao "%" - continuação da string sql 
+            pst.setString(1,txtCliPesquisar.getText()+"%");
+            rs = pst.executeQuery();
+            // a linha abaixo usa a biblioteca rs2xml. jar para filtrar a tabela
+            tblClientes.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    //Método para setar os campos do formulário com o conteúdo da tabela
+    public void setar_campos(){
+        int setar = tblClientes.getSelectedRow();
+        txtCliNome.setText(tblClientes.getModel().getValueAt(setar,1).toString());
+        txtCliEndereco.setText(tblClientes.getModel().getValueAt(setar,2).toString());
+        txtCliFone.setText(tblClientes.getModel().getValueAt(setar, 3).toString());
+        txtCliEmail.setText(tblClientes.getModel().getValueAt(setar,4).toString());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,6 +105,9 @@ ResultSet rs = null;
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
         setTitle("Clientes");
         setPreferredSize(new java.awt.Dimension(640, 480));
 
@@ -128,6 +157,12 @@ ResultSet rs = null;
 
         jLabel7.setText("* Campos obrigatórios");
 
+        txtCliPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCliPesquisarKeyReleased(evt);
+            }
+        });
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/pesquisar.png"))); // NOI18N
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -141,6 +176,11 @@ ResultSet rs = null;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,7 +264,7 @@ ResultSet rs = null;
                     .addComponent(btnCliCreate)
                     .addComponent(btnCliEdit)
                     .addComponent(btnCliDelete))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 640, 480);
@@ -248,6 +288,16 @@ ResultSet rs = null;
     private void txtCliEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCliEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCliEnderecoActionPerformed
+
+    // O evento abaixo e do tipo "enquanto for digitando em tempo real
+    private void txtCliPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCliPesquisarKeyReleased
+        pesquisar_cliente();
+    }//GEN-LAST:event_txtCliPesquisarKeyReleased
+
+    private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
+        // Chamando o método para setar os campos
+        setar_campos();
+    }//GEN-LAST:event_tblClientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
