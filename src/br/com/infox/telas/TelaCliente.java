@@ -93,7 +93,7 @@ ResultSet rs = null;
     }
     
     private void apagar(){
-        String sql = "DELETE FROM tbclientes WHERE idcli =?";
+        String sql = "DELETE FROM tbclientes WHERE idcli =? SET foreign_key_checks = 0;";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtCliId.getText());
