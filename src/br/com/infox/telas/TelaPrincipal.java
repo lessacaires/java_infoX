@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -262,7 +263,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             //imprimindo relatório com o framework JasperReports
             try {
                 //Usando a classe JasperPrint para preparar a impressão de um relatório
-                JasperPrint print = JasperFillManager.fillReport("C:\\Users\\User\\Documents\\NetBeansProjects\\prjinfoX\\reports", null, conexao);
+                JasperPrint print = JasperFillManager.fillReport("C:\\Users\\User\\Documents\\NetBeansProjects\\prjinfoX\\reports\\clientes.jasper", null, conexao);
+                //a linha abaixo exibe o relatório
+                JasperViewer.viewReport(print, false);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
