@@ -139,6 +139,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menRelServ.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         menRelServ.setText("Serviços");
+        menRelServ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menRelServActionPerformed(evt);
+            }
+        });
         menRel.add(menRelServ);
 
         Menu.add(menRel);
@@ -258,19 +263,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menRelCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRelCliActionPerformed
         // gerando um relatório de clientes
-        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a impressão desse relatório", "Atenção", JOptionPane.YES_NO_OPTION);
+        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a emissão desse relatório", "Atenção", JOptionPane.YES_NO_OPTION);
         if(confirma == JOptionPane.YES_OPTION){
             //imprimindo relatório com o framework JasperReports
             try {
                 //Usando a classe JasperPrint para preparar a impressão de um relatório
                 JasperPrint print = JasperFillManager.fillReport("C:\\Users\\User\\Documents\\NetBeansProjects\\prjinfoX\\reports\\clientes.jasper", null, conexao);
-                //a linha abaixo exibe o relatório
+                //a linha abaixo exibe o relatório atraves da classe JasperViewer
                 JasperViewer.viewReport(print, false);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
     }//GEN-LAST:event_menRelCliActionPerformed
+
+    private void menRelServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menRelServActionPerformed
+        // gerando um relatório de clientes
+        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a emissão desse relatório", "Atenção", JOptionPane.YES_NO_OPTION);
+        if(confirma == JOptionPane.YES_OPTION){
+            //imprimindo relatório com o framework JasperReports
+            try {
+                //Usando a classe JasperPrint para preparar a impressão de um relatório
+                JasperPrint print = JasperFillManager.fillReport("C:\\Users\\User\\Documents\\NetBeansProjects\\prjinfoX\\reports\\servicos.jasper", null, conexao);
+                //a linha abaixo exibe o relatório atraves da classe JasperViewer
+                JasperViewer.viewReport(print, false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_menRelServActionPerformed
 
     /**
      * @param args the command line arguments
